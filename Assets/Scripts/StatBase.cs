@@ -17,10 +17,6 @@ public class StatContext {
     private void CalculateTotalModifierImpact() {
         //Contexte bagli metod. Bu siraya gore oncelikli hesaplama devreye alinir.
         _bakedValue = DirectModifierContainer.CalculateTotalImpact(StatLevel);
-
-        //TAM SAYI KISMI BURADA ALINMASI LAZIM.
-        //_bakedValue = GetBaseValue(_bakedValue);
-
         //Debug.LogWarning($"Baked Value 01 {BakedValue}");
         _bakedValue = AdditivePercentageModifierContainer.CalculateTotalImpact(_bakedValue);
         //Debug.LogWarning($"Baked Value 02 {BakedValue}");
@@ -53,38 +49,3 @@ public class StatContext {
         }
     }
 }
-
-
-
-
-
-
-//public class StatLevelContext {
-//    public int StatLevel = 20; // +5
-
-
-//    IReduction _armorReduction = new WarCraftStylePhysicalArmorReduction2();
-
-//    public void GetArmorReduction() {
-//        _armorReduction.Execute(StatLevel);
-//    }
-
-
-
-//}
-
-//public abstract class IReduction {
-//    public abstract float Execute(int statLevel);
-//}
-
-//public class CustomPhysicalArmorReduction2 : IReduction {
-//    public override float Execute(int statLevel) {
-//        return (statLevel * 0.01f) / (1 + statLevel * 0.01f);
-//    }
-//}
-
-//public class WarCraftStylePhysicalArmorReduction2 : IReduction {
-//    public override float Execute(int statLevel) {
-//        return (statLevel * 0.06f) / (1 + statLevel * 0.06f);
-//    }
-//}
