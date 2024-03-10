@@ -4,15 +4,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+public enum ModifierType {
+    Direct,
+    AdditivePercentage,
+    CumulativePercentage,
+}
+
 [Serializable]
 public abstract class IModifier {
     //Abstract IModifier
     public float modifierBaseValue;
+    public ModifierType ModifierType;
 }
 
 [Serializable]
 public class Modifier : IModifier {
     //Concrete Modifier
+}
+public class LevelModifier : IModifier {
+
 }
 
 
@@ -50,6 +60,7 @@ public class DirectModifierContainer : IModifierContainer {
         foreach (Modifier modifier in modifiers) {
             totalModifierImpact += modifier.modifierBaseValue;
         }
+
         return totalModifierImpact;
     }
 }
@@ -63,7 +74,29 @@ public class AdditivePercentageModifierContainer : IModifierContainer {
             totalModifierImpact = (totalModifierImpact * modifier.modifierBaseValue * 0.01f);
             cumulativeModifierImpact += totalModifierImpact;
         }
-        //Cumulative sifir donmemesi gerek.
         return cumulativeModifierImpact;
     }
 }
+
+
+
+//public abstract class IGameAsset {
+
+//}
+
+//public class Card : IGameAsset {
+//    public Modifier physcalModifier;
+//    public LevelModifier levelModifier;
+//}
+
+//public class Item : IGameAsset {
+//    public Modifier phycalArmor, magicArmor;
+//}
+
+//public class CardInventory {
+//    public List<Card> cards;
+//}
+
+
+
+
