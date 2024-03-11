@@ -21,10 +21,6 @@ public abstract class IModifier {
 public class Modifier : IModifier {
     //Concrete Modifier
 }
-public class LevelModifier : IModifier {
-
-}
-
 
 [Serializable]
 public abstract class IModifierContainer {
@@ -43,7 +39,7 @@ public abstract class IModifierContainer {
 }
 
 [Serializable]
-public class CumulativePercentageModifierContainer : IModifierContainer {
+public class ModifierCumulativeRate : IModifierContainer {
     public override float CalculateTotalImpact(float statBaseValue) {
         float totalModifierImpact = statBaseValue;
         foreach(Modifier modifier in modifiers) {
@@ -54,7 +50,7 @@ public class CumulativePercentageModifierContainer : IModifierContainer {
 }
 
 [Serializable]
-public class DirectModifierContainer : IModifierContainer {
+public class ModifierDirect : IModifierContainer {
     public override float CalculateTotalImpact(float statBaseValue) {
         float totalModifierImpact = statBaseValue;
         foreach (Modifier modifier in modifiers) {
@@ -66,7 +62,7 @@ public class DirectModifierContainer : IModifierContainer {
 }
 
 [Serializable]
-public class AdditivePercentageModifierContainer : IModifierContainer {
+public class ModifierAdditiveRate : IModifierContainer {
     public override float CalculateTotalImpact(float statBaseValue) {
         float totalModifierImpact, cumulativeModifierImpact;
         totalModifierImpact = cumulativeModifierImpact = statBaseValue;
@@ -77,26 +73,4 @@ public class AdditivePercentageModifierContainer : IModifierContainer {
         return cumulativeModifierImpact;
     }
 }
-
-
-
-//public abstract class IGameAsset {
-
-//}
-
-//public class Card : IGameAsset {
-//    public Modifier physcalModifier;
-//    public LevelModifier levelModifier;
-//}
-
-//public class Item : IGameAsset {
-//    public Modifier phycalArmor, magicArmor;
-//}
-
-//public class CardInventory {
-//    public List<Card> cards;
-//}
-
-
-
 

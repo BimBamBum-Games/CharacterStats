@@ -9,9 +9,9 @@ public class StatContext {
     public float StatLevel;
     [SerializeField] float _bakedValue;
 
-    public DirectModifierContainer DirectModifierContainer;
-    public AdditivePercentageModifierContainer AdditivePercentageModifierContainer;
-    public CumulativePercentageModifierContainer CumulativeModifierContainer;
+    public ModifierDirect DirectModifierContainer;
+    public ModifierAdditiveRate AdditivePercentageModifierContainer;
+    public ModifierCumulativeRate CumulativeModifierContainer;
 
     //[ContextMenu("Calculate Total Impact")]
     private void CalculateTotalModifierImpact() {
@@ -35,17 +35,16 @@ public class StatContext {
         _bakedValue = bakedValueFromOutside;
     }
 
-    public float GetBaseValue(float anyKindOfArmorStat) {
-        return (anyKindOfArmorStat * 0.06f) / (1 + anyKindOfArmorStat * 0.06f);
-    }
-
     public void AddModifier(Modifier modifier) {
+        //Modifierler burada secim almalidir. //Referans kaybolursa dýsaridan calismaz. (Surekli new lenen bir yapi olursa.)
         if(modifier.ModifierType == ModifierType.Direct) {
-
-        }else if (modifier.ModifierType == ModifierType.Direct) {
-
-        }else if (modifier.ModifierType == ModifierType.Direct) {
-
+            DirectModifierContainer.Add(modifier);
+        }
+        else if (modifier.ModifierType == ModifierType.Direct) {
+            AdditivePercentageModifierContainer.Add(modifier);
+        }
+        else if (modifier.ModifierType == ModifierType.Direct) {
+            CumulativeModifierContainer.Add(modifier);
         }
     }
 }
